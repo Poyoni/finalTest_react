@@ -44,6 +44,10 @@ function initializeSocketServer(httpServer) {
         socket.on('disconnect', (reason) => {
             console.log('A user disconnected', socket.id, 'reason:', reason);
         });
+        socket.on('buttonClicked', (data) => {
+            io.emit('buttonClicked', data);
+            console.log(`Button clicked with name: ${data.name}`);
+        });
     });
     return io;
 }

@@ -1,10 +1,12 @@
+
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
 import "./attackPage.css";
 import { useNavigate } from "react-router-dom";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { fetchResources } from "../../store/attackSlice";
+import { emitButtonClicked } from "../../services/socketClient"; // ייבוא הפונקציה החדשה
 
 type Resource = {
   _id: string;
@@ -41,42 +43,45 @@ const AttackPage: React.FC = () => {
             <div className="resources-container">
               <h2>Resources:</h2>
               <div className="resources-list">
-              {Array.isArray(decoded.resources) && decoded.resources.map((resource: any) => (
-                <div key={resource._id} className="resource-card">
-                  <button className="resource-button">
-                    <h3>{resource.name}</h3>
-                  </button>
-                  <h2 className="resource-amount">{resource.amount}</h2>
-                </div>
-              ))}
+                {Array.isArray(decoded.resources) && decoded.resources.map((resource) => (
+                  <div key={resource._id} className="resource-card">
+                    <button 
+                      className="resource-button" 
+                      onClick={() => emitButtonClicked(resource.name)}
+                    >
+                      <h3>{resource.name}</h3>
+                    </button>
+                    <h2 className="resource-amount">{resource.amount}</h2>
+                  </div>
+                ))}
               </div>
-                <div className="region-select">
-                  <select name="region" id="region-select">
-                    <option value="North">North</option>
-                    <option value="South">South</option>
-                    <option value="Center">Center</option>
-                    <option value="WestBank">West Bank</option>
-                  </select>
-                </div>
+              <div className="region-select">
+                <select name="region" id="region-select">
+                  <option value="North">North</option>
+                  <option value="South">South</option>
+                  <option value="Center">Center</option>
+                  <option value="WestBank">West Bank</option>
+                </select>
+              </div>
             </div>
           )}
         </form>
         <table className="DefensePageTable">
-        <thead>
-          <tr>
-            <th>Rocket</th>
-            <th>Time To Hit</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-          </tr>
-        </tbody>
-      </table>
+          <thead>
+            <tr>
+              <th>Rocket</th>
+              <th>Time To Hit</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
