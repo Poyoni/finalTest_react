@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { User, Status } from '../types/index';
 import axios from 'axios';
 
 

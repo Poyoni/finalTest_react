@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/store";
 import "./attackPage.css";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
 import { fetchResources } from "../../store/attackSlice";
@@ -20,10 +19,6 @@ const AttackPage: React.FC = () => {
 
   const token = localStorage.getItem("token");
   const decoded = jwtDecode<{ id: string; organization: string; region?: string ; resources: Resource[]}>(token!);
-
-  const handleAttack = () => {
-
-  }
 
   const handleLogout = () => {
     localStorage.removeItem("token");

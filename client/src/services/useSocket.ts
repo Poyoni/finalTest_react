@@ -5,13 +5,12 @@ const SERVER_URL = 'http://localhost:5000';
 
 type CallbackResponse = { status: string };
 type Message = string | Record<string, any>;
-type numOfMissiles = number | Record<string, any>;
+
 
 export function useSocket() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [connected, setConnected] = useState<boolean>(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [numOfMissiles, setNumOfMissiles] = useState<numOfMissiles>(0);
   const [room, setRoom] = useState<string>(''); // Keep track of the current room
 
   useEffect(() => {
@@ -42,15 +41,6 @@ export function useSocket() {
       console.log('Heartbeat received:', data);
     });
 
-    socketInstance.on('update-missiles', (newCount: number) => {
-      setNumOfMissiles(newCount);  // עדכון המספר בהתאם לנתונים החדשים
-    });
-
-    const updateMissileCount = (newCount: number) => {
-      if (socket) {
-        socket.emit('update-missiles', newCount);  // שליחה לשרת לעדכון
-      }
-    };
 
     return () => {
       socketInstance.disconnect();

@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchResources, voteCandidate } from "../../store/attackSlice";
+import { fetchResources } from "../../store/attackSlice";
 import { RootState } from "../../store/store";
 import "./defensePage.css";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
 
