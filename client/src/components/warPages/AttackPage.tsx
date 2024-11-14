@@ -6,7 +6,7 @@ import "./attackPage.css";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { fetchResources } from "../../store/attackSlice";
-import { emitButtonClicked } from "../../services/socketClient"; // ייבוא הפונקציה החדשה
+import { emitButtonClicked } from "../../services/socketClient"; 
 
 type Resource = {
   _id: string;

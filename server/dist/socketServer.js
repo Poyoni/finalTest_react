@@ -30,7 +30,7 @@ function initializeSocketServer(httpServer) {
             console.log(`Broadcast message sent:`, message);
         });
         socket.on('update-missiles', (newCount) => {
-            io.to('room1').emit('update-missiles', newCount); // שולח עדכון לכל הלקוחות בחדר
+            io.to('room1').emit('update-missiles', newCount);
         });
         // Acknowledgement example
         socket.on('request', (data, callback) => {

@@ -35,7 +35,7 @@ export function initializeSocketServer(httpServer: HTTPServer) {
     });
 
     socket.on('update-missiles', (newCount) => {
-      io.to('room1').emit('update-missiles', newCount);  // שולח עדכון לכל הלקוחות בחדר
+      io.to('room1').emit('update-missiles', newCount);  
     });
 
     // Acknowledgement example
